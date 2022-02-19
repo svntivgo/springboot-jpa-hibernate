@@ -34,10 +34,11 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String employeeId) {
+    public Employee(String firstName, String lastName, String employeeId, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeId = employeeId;
+        this.role = role;
     }
 
     public Long getId() {

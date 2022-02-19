@@ -45,8 +45,8 @@ public class EmployeeJpaRepositoryTest {
         projectTwo = repoProject.save(projectTwo);
         projectThree = repoProject.save(projectThree);
 
-        Employee john = new Employee("John", "Smith", "empl123");
-        Employee claire = new Employee("Claire", "Simpson", "empl124");
+        Employee john = new Employee("John", "Smith", "empl123", dev);
+        Employee claire = new Employee("Claire", "Simpson", "empl124", admin);
 
         repo.save(john);
         repo.save(claire);
