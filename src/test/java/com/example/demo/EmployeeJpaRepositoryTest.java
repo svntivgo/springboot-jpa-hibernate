@@ -48,11 +48,21 @@ public class EmployeeJpaRepositoryTest {
         Employee john = new Employee("John", "Smith", "empl123", dev);
         Employee claire = new Employee("Claire", "Simpson", "empl124", admin);
 
+        john.getProjects().add(projectOne);
+        john.getProjects().add(projectTwo);
+
+        claire.getProjects().add(projectOne);
+        claire.getProjects().add(projectTwo);
+        claire.getProjects().add(projectThree);
+
         repo.save(john);
         repo.save(claire);
 
         repo.flush();
 
+        Employee emp124 = repo.findByEmployeeId("emp124");
+        assertEquals("Claire",emp124.getFirstName());
         assertEquals(2, repo.findAll().size());
+        assertEquals(admin, emp124.getRole());
     }
 }
