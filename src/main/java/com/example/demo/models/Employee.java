@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -17,6 +19,17 @@ public class Employee {
 
     @Column(nullable = false, unique = true, length = 10)
     private String employeeId;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "employee_project",
+            joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))
+    private List<Project> projects = new ArrayList<>();
 
     public Employee() {
     }
