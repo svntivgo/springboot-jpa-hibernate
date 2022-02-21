@@ -48,4 +48,11 @@ public class EmployeeService {
         employee.getProjects().add(newProject);
         return employeeRepository.save(employee);
     }
+
+    public Employee quitarProjectAEmployee (String employeeId, Long projectId) {
+        Project newProject = projectService.obetenerProjectPorId(projectId).get();
+        Employee employee = obtenerEmployeePorEmployeeId(employeeId);
+        employee.getProjects().remove(newProject);
+        return employeeRepository.save(employee);
+    }
 }

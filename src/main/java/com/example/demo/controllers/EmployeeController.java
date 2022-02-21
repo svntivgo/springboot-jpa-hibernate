@@ -73,4 +73,15 @@ public class EmployeeController {
     public Employee asignarProjectAEmployee (@RequestParam("employeeId") String employeeId, @RequestParam("projectId") Long projectId) {
         return this.employeeService.asignarProjectAEmployee(employeeId, projectId);
     }
+
+    /**
+     * Quita un proyecto al empleado
+     * @param employeeId ID del empleado en la empresa
+     * @param projectId ID del proyecto en la base de datos
+     * @return
+     */
+    @PutMapping(path = "/remove-project/q")
+    public Employee quitarProjectAEmployee (@RequestParam("employeeId") String employeeId, @RequestParam("projectId") Long projectId) {
+        return this.employeeService.quitarProjectAEmployee(employeeId, projectId);
+    }
 }
