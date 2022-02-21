@@ -5,6 +5,7 @@ import com.example.demo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -37,5 +38,10 @@ public class EmployeeController {
     @GetMapping(path = "/get/{employeeId}")
     public Employee obtenerEmployeePorEmployeeId(@PathVariable("employeeId") String id) {
         return this.employeeService.obtenerEmployeePorEmployeeId(id);
+    }
+    
+    @PutMapping(path = "/new-project/q")
+    public Employee asignarProjectAEmployee (@RequestParam("employeeId") String employeeId, @RequestParam("projectId") Long projectId) {
+        return this.employeeService.asignarProjectAEmployee(employeeId, projectId);
     }
 }

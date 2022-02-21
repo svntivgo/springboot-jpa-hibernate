@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Employee;
+import com.example.demo.models.Project;
 import com.example.demo.repositories.IEmployeeJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import java.util.Optional;
 public class EmployeeService {
     @Autowired
     IEmployeeJpaRepository employeeRepository;
+
+    @Autowired
+    ProjectService projectService;
 
     public Employee guardarEmployee (Employee employee) {
         return employeeRepository.save(employee);
@@ -36,5 +40,12 @@ public class EmployeeService {
 
     public Employee obtenerEmployeePorEmployeeId (String id) {
         return employeeRepository.findByEmployeeId(id);
+    }
+
+    public Employee asignarProjectAEmployee (String employeeId, Long projectId) {
+        Project newProject = projectService.obetenerProjectPorId(projectId).get();
+        Employee employee = obtenerEmployeePorEmployeeId(employeeId);
+        employee.getProjects().add(newProject);
+        return employeeRepository.save(employee);
     }
 }
